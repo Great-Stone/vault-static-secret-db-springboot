@@ -1,0 +1,31 @@
+management:
+    endpoints:
+        web:
+            exposure:
+                include: refresh
+spring:
+    cloud.vault:
+        host: vault-1
+        port: 8200
+        scheme: http
+        uri: http://172.28.128.21:8200
+        connection-timeout: 5000
+        read-timeout: 15000
+        authentication: TOKEN
+        token: ${APP_VAULT_TOKEN:s.ei8BGygI7gxgXDbso}
+        config:
+            order: -10
+            lifecycle:
+                enabled: true
+                min-renewal: 10s
+                expiry-threshold: 1m
+                lease-endpoints: Legacy
+        kv:
+            enabled: false
+        database:
+            enabled: true
+            static-role: true
+            role: mssql-static-role
+            backend: mssql
+            username-property: spring.datasource.username
+            password-property: spring.datasource.password
