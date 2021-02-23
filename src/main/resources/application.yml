@@ -8,7 +8,7 @@ spring:
   profiles: dev
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://172.28.128.31:1433;databasename=master
+    url: jdbc:sqlserver://${MSSQL_ADDR:172.28.128.31}:${MSSQL_PORT:1433};databasename=${MSSQL_DB:master}
 
 server:
-  port: 8080
+  port: ${NOMAD_HOST_PORT_http:8080}
